@@ -19,7 +19,7 @@ export const PostCard = ({ title, description, upvotes, downvotes, tags }: PostT
   }
   return (
     <Card className="my-2 mx-2">
-      <CardContent className="relative font-outfit flex flex-col space-y-2">
+      <CardContent className="relative flex flex-col space-y-2">
         <div className="flex justify-center items-center gap-5">
           <div className="flex flex-col space-y-1">
             <div className="text-2xl font-bold">{title}</div>
