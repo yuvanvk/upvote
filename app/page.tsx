@@ -1,11 +1,14 @@
-import { HeroSection } from "@/components/landing/hero-section";
-import { Topbar } from "@/components/ui/topbar";
+
+import { Main } from "@/components/main";
+import { Navbar } from "@/components/ui/navbar";
+import { SiteHeader } from "@/components/ui/site-header";
 
 export default function Home() {
   return (
-    <div>
-        <Topbar />
-        <HeroSection />
+    <div className="max-w-7xl mx-auto flex flex-col" >
+        <Navbar />
+        {/* <SiteHeader /> */}
+        <Main />
     </div>
   );
 }
