@@ -1,8 +1,13 @@
+import { auth } from "@/auth";
 import prisma from "@/db/src";
 import { Tag } from "@/db/src/generated/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+    const session = await auth();
+    if(!session?.user) {
+        return NextResponse.json({ message: "Unauthorized please signin"}, { status: 400 })
+    }
     try {
         const body = await req.json();
         const { title, description, tag } = body;
@@ -15,7 +20,8 @@ export async function POST(req: NextRequest) {
             data: {
                 title: title.trim(),
                 description: description.trim(),
-                tag: tag === "idea" ? Tag.Idea : Tag.Issue 
+                tag: tag === "idea" ? Tag.Idea : Tag.Issue ,
+                userId: session?.user?.id!
             }
         })
 
