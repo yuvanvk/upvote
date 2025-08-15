@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -11,23 +11,61 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Textarea } from "./ui/textarea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { AlertCircleIcon, Loader2 } from "lucide-react";
+import { AnimatePresence, motion as m } from "motion/react";
+import axios from "axios";
 
 export const CreateForm = () => {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [postType, setPostType] = useState("");
-    const [error, setError] = useState<string | null>(null)
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [postType, setPostType] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const handleCreate = async () => {
-        if(!title || !description || !postType) {
-            setError("Please provide all the details")
-            return
-        }
+  const handleCreate = async () => {
+    try {
+      if (!title || !description || !postType) {
+        setError("Please provide all the details");
+        return;
+      }
+      setLoading(true);
+      const response = await axios.post("/api/create", {
+        title,
+        description,
+        tag: postType,
+      });
+
+      if (response.status == 200) {
+        setSuccess("Post created successfully!");
+        setTimeout(() => router.push("/"), 2000);
+      }
+    } catch (error) {
+      setError(`${error}`);
+    } finally {
+      setLoading(false);
     }
-    
+  };
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        setSuccess(null);
+      }, 2000);
+    }
+  }, [success]);
 
   return (
     <div className="mt-28 mx-2 space-y-10">
@@ -39,7 +77,8 @@ export const CreateForm = () => {
       </div>
       <div className="space-y-8">
         <div className="flex items-center gap-2">
-          <Input onChange={(e) => setTitle(e.target.value)}
+          <Input
+            onChange={(e) => setTitle(e.target.value)}
             className="py-6 !text-[16px]"
             type="text"
             placeholder="Title*"
@@ -58,7 +97,8 @@ export const CreateForm = () => {
             </SelectContent>
           </Select>
         </div>
-        <Textarea onChange={(e) => setDescription(e.target.value)}
+        <Textarea
+          onChange={(e) => setDescription(e.target.value)}
           className="resize-none min-h-[150px] !text-[16px]"
           placeholder="Description"
           required
@@ -66,10 +106,46 @@ export const CreateForm = () => {
         />
 
         <div className="flex justify-between items-center">
-          <Button onClick={() => router.push("/")} variant={"destructive"}>Cancel</Button>
-          <Button onClick={handleCreate}>Create</Button>
+          <Button onClick={() => router.push("/")} variant={"destructive"}>
+            Cancel
+          </Button>
+          <Button className="min-w-20" onClick={handleCreate}>
+            {loading ? <Loader2 className="animate-spin" /> : "Create"}
+          </Button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {error && (
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeIn" }}
+          >
+            <Alert variant="destructive">
+              <AlertCircleIcon />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          </m.div>
+        )}
+
+        {success && (
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeIn" }}
+          >
+            <Alert variant="default">
+              <AlertCircleIcon />
+              <AlertTitle>Success</AlertTitle>
+              <AlertDescription>{success}</AlertDescription>
+            </Alert>
+          </m.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
