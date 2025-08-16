@@ -68,14 +68,14 @@ export const CreateForm = () => {
   }, [success]);
 
   return (
-    <div className="mt-28 mx-2 space-y-10">
-      <div>
+    <div className="mt-28  space-y-10">
+      <div className="border-b p-4">
         <div className="text-2xl font-semibold">Create a new post</div>
         <div className=" text-muted-foreground">
           Share your ideas, issue and more and get them upvoted
         </div>
       </div>
-      <div className="space-y-8">
+      <div className="space-y-8 border-b p-4">
         <div className="flex items-center gap-2">
           <Input
             onChange={(e) => setTitle(e.target.value)}
@@ -99,7 +99,7 @@ export const CreateForm = () => {
         </div>
         <Textarea
           onChange={(e) => setDescription(e.target.value)}
-          className="resize-none min-h-[150px] !text-[16px]"
+          className="resize-none min-h-[150px] !text-[16px] "
           placeholder="Description"
           required
           maxLength={200}

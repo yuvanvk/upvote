@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { SessionProvider } from "next-auth/react";
+import { Navbar } from "@/components/ui/navbar";
 
 
 const geistSans = Geist({
@@ -36,7 +37,13 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange>
           
+          <Navbar />
+      <div
+        className="max-w-7xl mx-auto flex flex-col h-screen relative border-x-1"
+      >
+        
             {children}
+      </div>
           </ThemeProvider>
         </SessionProvider>
       </body>
