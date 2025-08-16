@@ -31,7 +31,7 @@ export const PostCard = ({ title, description, upvotes, downvotes, tags, id }: P
   }
   
   return (
-    <Card className="my-3 mx-2  shadow-none border">
+    <Card className=" bg-transparent shadow-none min-h-40 max-h-40 !border-b-1">
       <CardContent>
         <div className="flex flex-col space-y-2">
          
