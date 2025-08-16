@@ -3,12 +3,12 @@
 import { Button } from "./button";
 import { CircleUserRound } from "lucide-react";
 import { Session } from "next-auth";
-import { signIn} from "next-auth/react"
+import { signIn, signOut} from "next-auth/react"
 
 
 export const User = ({ session }: { session: Session | null}) => {
 
   return <div>
-    {session?.user ? <CircleUserRound /> : <Button onClick={() => signIn("google")}>Login</Button>}
+    {session?.user ? <Button onClick={() => signOut()}>Logout</Button> : <Button onClick={() => signIn("google")}>Login</Button>}
   </div>
 };

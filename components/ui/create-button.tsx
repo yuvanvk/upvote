@@ -24,7 +24,7 @@ export const CreateButton = () => {
     return (
       <Button
         onClick={handleCreate}
-        className="w-10 h-10 rounded-full bg-[#99FE01] flex items-center justify-center cursor-pointer"
+        className="w-10 h-10 rounded-full bg-[#99FE01] text-black flex items-center justify-center cursor-pointer"
       >
         <Plus />
       </Button>
