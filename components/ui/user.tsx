@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "./button";
-import { CircleUserRound } from "lucide-react";
 import { Session } from "next-auth";
 import { signIn, signOut} from "next-auth/react"
 
