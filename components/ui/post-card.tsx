@@ -31,22 +31,22 @@ export const PostCard = ({ title, description, upvotes, downvotes, tags, id }: P
   }
   
   return (
-    <Card className=" bg-transparent shadow-none min-h-40 max-h-40 !border-b-1">
+    <Card className=" bg-transparent shadow-none !border-b-1">
       <CardContent>
         <div className="flex flex-col space-y-2">
          
-          <div className="flex justify-between items-start gap-4">
+          <div className="flex  justify-between items-start gap-4">
             <div className="flex-1 min-w-0">
-              <h3 className="text-xl font-bold text-foreground mb-2 leading-tight">
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 leading-tight">
                 {title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
                 {description}
               </p>
             </div>
             
            
-            <div className="flex  items-center space-x-5 flex-shrink-0">
+            <div className="flex flex-col space-y-2 md:flex-row  md:items-center md:space-x-5 md:space-y-0 flex-shrink-0">
               <VoteButton isActive={isActive == 0} onClick={() => handleVoteChange("up")}  type="up" count={localUpvotes} />
               <VoteButton isActive={isActive == 1} onClick={() => handleVoteChange("down")} type="down" count={localDownvotes} />
             </div>
