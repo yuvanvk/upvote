@@ -18,7 +18,7 @@ export const Main = async ({ filter }: { filter: string }) => {
       where = { tag: filter === "idea" ? Tag.Idea : Tag.Issue };
     }
   
-    const posts = await prisma.post.findMany({ where });
+    const posts = await prisma.post.findMany({ where, orderBy: {upvotes: "desc"} });
 
       
     return <div className="w-full">

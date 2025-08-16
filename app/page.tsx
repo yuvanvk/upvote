@@ -1,5 +1,4 @@
 import { Main } from "@/components/main";
-import { Navbar } from "@/components/ui/navbar";
 import { SiteHeader } from "@/components/ui/site-header";
 
 export default function Home({
