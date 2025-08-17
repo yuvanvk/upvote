@@ -1,5 +1,4 @@
-import { Main } from "@/components/main";
-import { SiteHeader } from "@/components/ui/site-header";
+
 
 export default async function Home(
   props: {
@@ -11,8 +10,7 @@ export default async function Home(
 
   return (
     <>
-      <SiteHeader filter={filter} />
-      <Main filter={filter} />
+    
     </>
   );
 }
