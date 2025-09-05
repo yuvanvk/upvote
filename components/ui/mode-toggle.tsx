@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes";
-import { MoonIcon } from "./moon";
-import { SunMediumIcon } from "./sun-medium";
+import { HalfShadowedIcon } from "./half-shadowed-icon";
 
 export const ModeToggle = () => {
     const { theme, setTheme } = useTheme();
@@ -20,7 +19,7 @@ export const ModeToggle = () => {
 
     if (!mounted) return null;
 
-    return <button onClick={handleClick}>
-        {theme === "light" ? <MoonIcon /> : <SunMediumIcon />}
+    return <button onClick={handleClick} className="justify-center flex cursor-pointer">
+        <HalfShadowedIcon />
     </button>
 }
