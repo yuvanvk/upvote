@@ -7,8 +7,8 @@ export const Navbar = async () => {
   const user = await getUser();
   return (
     <div className="fixed w-full border-b-2 ">
-      <div className="mx-auto flex max-w-7xl items-center justify-between py-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lime-500 text-xl font-semibold text-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between py-6">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-xl font-semibold text-white">
           <div>U</div>
         </div>
         <div className="flex items-center gap-x-5">

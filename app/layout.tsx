@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Provider } from "@/components/ui/provider";
+import { Provider } from "@/lib/providers/provider";
 import { GeistSans } from 'geist/font/sans';
 import "./globals.css";
 
 import { GeistMono } from 'geist/font/mono';
+import { Navbar } from "@/components/ui/navbar";
 
 
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         className={`${GeistMono.variable} antialiased `}
       >
         <Provider>
+          <Navbar />
           {children}
         </Provider>
 
